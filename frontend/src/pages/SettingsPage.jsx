@@ -58,7 +58,7 @@ export default function SettingsPage() {
           Appearance & Theme Mode
         </h3>
 
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100">Dark Mode Interface</h4>
             <p className="text-xs text-slate-500">Switch between light slate and dark glassmorphic themes</p>
@@ -66,7 +66,7 @@ export default function SettingsPage() {
 
           <button
             onClick={toggleDarkMode}
-            className="px-4 py-2 text-xs font-bold rounded-xl border flex items-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-700"
+            className="px-4 py-3 text-xs font-bold rounded-xl border flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-700 w-full sm:w-auto"
           >
             {darkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4" />}
             {darkMode ? 'Dark Mode' : 'Light Mode'}
@@ -91,7 +91,7 @@ export default function SettingsPage() {
               required
               value={currentPwd}
               onChange={(e) => setCurrentPwd(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
+              className="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
             />
           </div>
 
@@ -104,7 +104,7 @@ export default function SettingsPage() {
               required
               value={newPwd}
               onChange={(e) => setNewPwd(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
+              className="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
             />
           </div>
 
@@ -117,14 +117,14 @@ export default function SettingsPage() {
               required
               value={confirmPwd}
               onChange={(e) => setConfirmPwd(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
+              className="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-2.5 text-xs font-bold text-white bg-agri-600 hover:bg-agri-700 rounded-xl shadow-md transition-all flex items-center gap-2"
+            className="w-full sm:w-auto px-6 py-3.5 text-xs font-bold text-white bg-agri-600 hover:bg-agri-700 rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
           >
             {loading ? 'Updating...' : 'Update Password'}
           </button>

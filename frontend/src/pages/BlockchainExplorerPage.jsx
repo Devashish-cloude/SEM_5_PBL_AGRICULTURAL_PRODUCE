@@ -65,22 +65,22 @@ export default function BlockchainExplorerPage() {
 
       {/* SEARCH BAR */}
       <div className="glass-card p-6 max-w-2xl mx-auto">
-        <form onSubmit={handleSearch} className="flex gap-3">
+        <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
             <input
               type="text"
               placeholder="Search Batch ID, Block Hash, or Tx Hash..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-mono text-xs text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-agri-500 outline-none"
+              className="w-full pl-11 pr-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-mono text-xs text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-agri-500 outline-none"
             />
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-4" />
           </div>
 
           <button
             type="submit"
             disabled={searching}
-            className="px-6 py-3 font-bold text-xs text-white bg-agri-600 hover:bg-agri-700 rounded-xl shadow-agri transition-all"
+            className="px-6 py-3.5 font-bold text-xs text-white bg-agri-600 hover:bg-agri-700 rounded-xl shadow-agri transition-all w-full sm:w-auto text-center"
           >
             {searching ? 'Searching...' : 'Search Ledger'}
           </button>

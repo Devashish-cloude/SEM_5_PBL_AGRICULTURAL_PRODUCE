@@ -48,9 +48,9 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 // Layout with Sidebar for Dashboard routes
 const DashboardLayout = ({ children }) => {
   return (
-    <div className="flex">
+    <div className="flex relative">
       <Sidebar />
-      <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full transition-all duration-300">
         {children}
       </main>
     </div>

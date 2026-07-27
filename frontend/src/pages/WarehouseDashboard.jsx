@@ -142,32 +142,32 @@ export default function WarehouseDashboard() {
             </div>
 
             <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-3 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 <div>
-                  <label className="font-bold text-slate-600">Warehouse Name</label>
+                  <label className="font-bold text-slate-700 dark:text-slate-300">Warehouse Name</label>
                   <input
                     type="text"
                     value={whName}
                     onChange={(e) => setWhName(e.target.value)}
-                    className="w-full p-2 rounded-lg border text-xs"
+                    className="w-full py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:ring-2 focus:ring-agri-500 outline-none"
                   />
                 </div>
                 <div>
-                  <label className="font-bold text-slate-600">Assign Storage Rack</label>
+                  <label className="font-bold text-slate-700 dark:text-slate-300">Assign Storage Rack</label>
                   <input
                     type="text"
                     value={rackLocation}
                     onChange={(e) => setRackLocation(e.target.value)}
-                    className="w-full p-2 rounded-lg border text-xs"
+                    className="w-full py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:ring-2 focus:ring-agri-500 outline-none"
                   />
                 </div>
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <button
                   onClick={() => handleReceiveWarehouse(scannedBatch.batch_id)}
                   disabled={submitting}
-                  className="flex-1 py-2.5 font-bold text-xs text-white bg-agri-600 hover:bg-agri-700 rounded-xl shadow-md flex items-center justify-center gap-1.5"
+                  className="w-full sm:flex-1 py-3 px-4 font-bold text-xs text-white bg-agri-600 hover:bg-agri-700 rounded-xl shadow-md flex items-center justify-center gap-1.5"
                 >
                   <PackageCheck className="w-4 h-4" />
                   Receive & Store in Warehouse
@@ -176,7 +176,7 @@ export default function WarehouseDashboard() {
                 <button
                   onClick={() => handleDispatchWarehouse(scannedBatch.batch_id)}
                   disabled={submitting}
-                  className="flex-1 py-2.5 font-bold text-xs text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-md flex items-center justify-center gap-1.5"
+                  className="w-full sm:flex-1 py-3 px-4 font-bold text-xs text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-md flex items-center justify-center gap-1.5"
                 >
                   <Send className="w-4 h-4" />
                   Dispatch to Retailer

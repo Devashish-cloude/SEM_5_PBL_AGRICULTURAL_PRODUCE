@@ -136,33 +136,33 @@ export default function RetailerDashboard() {
             </div>
 
             <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-3 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 <div>
-                  <label className="font-bold text-slate-600">Store Name</label>
+                  <label className="font-bold text-slate-700 dark:text-slate-300">Store Name</label>
                   <input
                     type="text"
                     value={storeName}
                     onChange={(e) => setStoreName(e.target.value)}
-                    className="w-full p-2 rounded-lg border text-xs"
+                    className="w-full py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:ring-2 focus:ring-agri-500 outline-none"
                   />
                 </div>
                 <div>
-                  <label className="font-bold text-slate-600">Retail Price (₹/kg)</label>
+                  <label className="font-bold text-slate-700 dark:text-slate-300">Retail Price (₹/kg)</label>
                   <input
                     type="number"
                     step="0.5"
                     value={pricePerKg}
                     onChange={(e) => setPricePerKg(e.target.value)}
-                    className="w-full p-2 rounded-lg border text-xs font-bold text-agri-600"
+                    className="w-full py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-agri-600 dark:text-agri-400 font-bold text-xs focus:ring-2 focus:ring-agri-500 outline-none"
                   />
                 </div>
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <button
                   onClick={() => handleReceiveRetailer(scannedBatch.batch_id)}
                   disabled={submitting}
-                  className="flex-1 py-2.5 font-bold text-xs text-white bg-agri-600 hover:bg-agri-700 rounded-xl shadow-md flex items-center justify-center gap-1.5"
+                  className="w-full sm:flex-1 py-3 px-4 font-bold text-xs text-white bg-agri-600 hover:bg-agri-700 rounded-xl shadow-md flex items-center justify-center gap-1.5"
                 >
                   <Tag className="w-4 h-4" />
                   Make Available in Store
@@ -171,7 +171,7 @@ export default function RetailerDashboard() {
                 <button
                   onClick={() => handleSellProduct(scannedBatch.batch_id)}
                   disabled={submitting}
-                  className="flex-1 py-2.5 font-bold text-xs text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl shadow-md flex items-center justify-center gap-1.5"
+                  className="w-full sm:flex-1 py-3 px-4 font-bold text-xs text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl shadow-md flex items-center justify-center gap-1.5"
                 >
                   <ShoppingCart className="w-4 h-4" />
                   Sell to Consumer (Point of Sale)

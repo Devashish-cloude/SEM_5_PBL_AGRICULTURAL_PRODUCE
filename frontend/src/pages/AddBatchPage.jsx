@@ -159,7 +159,7 @@ export default function AddBatchPage() {
                   placeholder="e.g. Organic Wheat (Sonalika HD-2967)"
                   value={formData.crop_name}
                   onChange={(e) => setFormData({ ...formData, crop_name: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
+                  className="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
                 />
               </div>
 
@@ -175,7 +175,7 @@ export default function AddBatchPage() {
                   placeholder="e.g. 500"
                   value={formData.quantity}
                   onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
+                  className="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
                 />
               </div>
             </div>
@@ -191,7 +191,7 @@ export default function AddBatchPage() {
                   required
                   value={formData.harvest_date}
                   onChange={(e) => setFormData({ ...formData, harvest_date: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
+                  className="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
                 />
               </div>
 
@@ -205,7 +205,7 @@ export default function AddBatchPage() {
                   placeholder="e.g. Mullanpur"
                   value={formData.village}
                   onChange={(e) => setFormData({ ...formData, village: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
+                  className="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
                 />
               </div>
             </div>
@@ -222,7 +222,7 @@ export default function AddBatchPage() {
                   placeholder="e.g. Ludhiana"
                   value={formData.district}
                   onChange={(e) => setFormData({ ...formData, district: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
+                  className="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
                 />
               </div>
 
@@ -236,7 +236,7 @@ export default function AddBatchPage() {
                   placeholder="e.g. Punjab"
                   value={formData.state}
                   onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
+                  className="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-agri-500 outline-none"
                 />
               </div>
             </div>

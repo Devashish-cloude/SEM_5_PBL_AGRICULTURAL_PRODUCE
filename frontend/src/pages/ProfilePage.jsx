@@ -20,9 +20,9 @@ export default function ProfilePage() {
         </p>
       </div>
 
-      <div className="glass-card p-8 space-y-6">
-        <div className="flex items-center gap-5 pb-6 border-b border-slate-100 dark:border-slate-700">
-          <div className="w-20 h-20 rounded-3xl bg-agri-600 text-white flex items-center justify-center font-extrabold text-3xl shadow-agri">
+      <div className="glass-card p-5 sm:p-8 space-y-6">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-5 pb-6 border-b border-slate-100 dark:border-slate-700">
+          <div className="w-20 h-20 rounded-3xl bg-agri-600 text-white flex items-center justify-center font-extrabold text-3xl shadow-agri shrink-0">
             {user.name.charAt(0).toUpperCase()}
           </div>
           <div>
@@ -39,7 +39,7 @@ export default function ProfilePage() {
               <Mail className="w-4 h-4 text-agri-600" />
               Email Address
             </span>
-            <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">{user.email}</p>
+            <p className="text-sm font-semibold text-slate-800 dark:text-slate-200 break-all">{user.email}</p>
           </div>
 
           <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-1">
@@ -59,12 +59,12 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        <div className="pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs text-slate-500">
-          <span className="flex items-center gap-1">
+        <div className="pt-4 border-t border-slate-100 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-500">
+          <span className="flex items-center gap-1.5">
             <ShieldCheck className="w-4 h-4 text-agri-600" />
             RBAC Account Status: Verified & Approved
           </span>
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1.5">
             <Calendar className="w-4 h-4" />
             Member since {new Date(user.created_at || Date.now()).toLocaleDateString()}
           </span>

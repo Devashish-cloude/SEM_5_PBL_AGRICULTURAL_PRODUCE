@@ -204,8 +204,8 @@ export default function LandingPage() {
       {/* STATISTICS SECTION */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="glass-card p-10 bg-gradient-to-r from-agri-900 via-agri-800 to-slate-900 text-white rounded-3xl shadow-2xl relative overflow-hidden">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center relative z-10">
+          <div className="glass-card p-6 sm:p-10 bg-gradient-to-r from-agri-900 via-agri-800 to-slate-900 text-white rounded-3xl shadow-2xl relative overflow-hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center relative z-10">
               {stats.map((stat) => {
                 const Icon = stat.icon;
                 return (

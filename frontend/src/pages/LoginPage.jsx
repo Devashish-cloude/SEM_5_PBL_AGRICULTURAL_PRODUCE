@@ -80,13 +80,13 @@ export default function LoginPage() {
               <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
                 Select Your Login Role
               </label>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {roles.map((r) => (
                   <button
                     key={r.id}
                     type="button"
                     onClick={() => setRole(r.id)}
-                    className={`py-2 px-2 text-xs font-bold rounded-xl border transition-all ${
+                    className={`py-2.5 px-2 text-xs font-bold rounded-xl border transition-all ${
                       role === r.id
                         ? 'bg-agri-600 text-white border-agri-600 shadow-agri'
                         : 'bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100'
@@ -110,9 +110,9 @@ export default function LoginPage() {
                   placeholder="name@agrichain.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-agri-500"
+                  className="w-full pl-10 pr-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-agri-500"
                 />
-                <Mail className="w-5 h-5 text-slate-400 absolute left-3 top-3.5" />
+                <Mail className="w-5 h-5 text-slate-400 absolute left-3 top-4" />
               </div>
             </div>
 
@@ -133,9 +133,9 @@ export default function LoginPage() {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-agri-500"
+                  className="w-full pl-10 pr-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-agri-500"
                 />
-                <Lock className="w-5 h-5 text-slate-400 absolute left-3 top-3.5" />
+                <Lock className="w-5 h-5 text-slate-400 absolute left-3 top-4" />
               </div>
             </div>
 

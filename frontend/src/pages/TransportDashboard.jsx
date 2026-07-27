@@ -144,54 +144,54 @@ export default function TransportDashboard() {
 
             {/* Transport Details Form */}
             <div className="space-y-3">
-              <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 <div>
-                  <label className="font-bold text-slate-600">Company</label>
+                  <label className="font-bold text-slate-700 dark:text-slate-300">Company</label>
                   <input
                     type="text"
                     value={startForm.transport_company}
                     onChange={(e) => setStartForm({ ...startForm, transport_company: e.target.value })}
-                    className="w-full p-2 rounded-lg border text-xs"
+                    className="w-full py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:ring-2 focus:ring-agri-500 outline-none"
                   />
                 </div>
                 <div>
-                  <label className="font-bold text-slate-600">Driver</label>
+                  <label className="font-bold text-slate-700 dark:text-slate-300">Driver</label>
                   <input
                     type="text"
                     value={startForm.driver_name}
                     onChange={(e) => setStartForm({ ...startForm, driver_name: e.target.value })}
-                    className="w-full p-2 rounded-lg border text-xs"
+                    className="w-full py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:ring-2 focus:ring-agri-500 outline-none"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 <div>
-                  <label className="font-bold text-slate-600">Vehicle No.</label>
+                  <label className="font-bold text-slate-700 dark:text-slate-300">Vehicle No.</label>
                   <input
                     type="text"
                     value={startForm.vehicle_no}
                     onChange={(e) => setStartForm({ ...startForm, vehicle_no: e.target.value })}
-                    className="w-full p-2 rounded-lg border text-xs"
+                    className="w-full py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:ring-2 focus:ring-agri-500 outline-none"
                   />
                 </div>
                 <div>
-                  <label className="font-bold text-slate-600">Destination</label>
+                  <label className="font-bold text-slate-700 dark:text-slate-300">Destination</label>
                   <input
                     type="text"
                     value={startForm.destination}
                     onChange={(e) => setStartForm({ ...startForm, destination: e.target.value })}
-                    className="w-full p-2 rounded-lg border text-xs"
+                    className="w-full py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:ring-2 focus:ring-agri-500 outline-none"
                   />
                 </div>
               </div>
 
-              <div className="flex gap-2 pt-2">
+              <div className="flex flex-col sm:flex-row gap-2 pt-2">
                 {scannedBatch.status === 'Created' && (
                   <button
                     onClick={() => handleStartTransport(scannedBatch.batch_id)}
                     disabled={submitting}
-                    className="flex-1 py-2.5 font-bold text-xs text-white bg-agri-600 hover:bg-agri-700 rounded-xl shadow-md flex items-center justify-center gap-1.5"
+                    className="w-full sm:flex-1 py-3 px-4 font-bold text-xs text-white bg-agri-600 hover:bg-agri-700 rounded-xl shadow-md flex items-center justify-center gap-1.5"
                   >
                     <Play className="w-4 h-4" />
                     Start Transport (Set In Transit)
@@ -202,7 +202,7 @@ export default function TransportDashboard() {
                   <button
                     onClick={() => handleCompleteDelivery(scannedBatch.batch_id)}
                     disabled={submitting}
-                    className="flex-1 py-2.5 font-bold text-xs text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl shadow-md flex items-center justify-center gap-1.5"
+                    className="w-full sm:flex-1 py-3 px-4 font-bold text-xs text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl shadow-md flex items-center justify-center gap-1.5"
                   >
                     <CheckCircle2 className="w-4 h-4" />
                     Complete Transport Delivery
