@@ -50,8 +50,9 @@ def delete_user(db: Session, user_id: int):
     return False
 
 # --- BATCH CRUD ---
-def create_farmer_batch(db: Session, batch_data: schemas.CreateBatchRequest, farmer_id: int, farmer_name: str, image_url: str = None):
-    batch_id = blockchain_engine.generate_batch_id()
+def create_farmer_batch(db: Session, batch_data: schemas.CreateBatchRequest, farmer_id: int, farmer_name: str, image_url: str = None, batch_id: str = None):
+    if not batch_id:
+        batch_id = blockchain_engine.generate_batch_id()
     block_hash, tx_hash, block_num = blockchain_engine.create_genesis_block(
         batch_id=batch_id,
         crop_name=batch_data.crop_name,

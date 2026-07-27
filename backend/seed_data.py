@@ -91,7 +91,7 @@ def seed():
         district="Ludhiana",
         state="Punjab",
         description="Premium Grade A Non-GMO Sonalika Wheat harvested using organic compost."
-    ), farmer_id=farmer_user.id, farmer_name=farmer_user.name, image_url="https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=600&q=80")
+    ), farmer_id=farmer_user.id, farmer_name=farmer_user.name, image_url="https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=600&q=80", batch_id="AGRI-2026-A8F9")
 
     # Step through supply chain for Batch 1
     crud.start_transport(db, schemas.TransportStartRequest(
