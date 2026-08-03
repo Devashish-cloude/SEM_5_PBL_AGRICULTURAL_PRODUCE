@@ -8,10 +8,20 @@ export default function SettingsPage() {
   const [currentPwd, setCurrentPwd] = useState('');
   const [newPwd, setNewPwd] = useState('');
   const [confirmPwd, setConfirmPwd] = useState('');
+  const [apiUrl, setApiUrl] = useState(localStorage.getItem('agrichain_api_url') || import.meta.env.VITE_API_BASE_URL || '');
   const [loading, setLoading] = useState(false);
   const [toastMsg, setToastMsg] = useState({ text: '', type: 'success' });
 
   const { darkMode, toggleDarkMode } = useTheme();
+
+  const handleSaveApiUrl = (e) => {
+    e.preventDefault();
+    localStorage.setItem('agrichain_api_url', apiUrl.trim());
+    setToastMsg({ text: 'API Server URL updated successfully! Refreshing...', type: 'success' });
+    setTimeout(() => {
+      window.location.reload();
+    }, 1200);
+  };
 
   const handlePasswordChange = async (e) => {
     e.preventDefault();
@@ -72,6 +82,40 @@ export default function SettingsPage() {
             {darkMode ? 'Dark Mode' : 'Light Mode'}
           </button>
         </div>
+      </div>
+
+      {/* Backend API Configuration */}
+      <div className="glass-card p-6 space-y-4">
+        <h3 className="font-bold text-base text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-700 pb-3 flex items-center gap-2">
+          <Settings className="w-5 h-5 text-agri-600" />
+          Backend API Server URL
+        </h3>
+
+        <form onSubmit={handleSaveApiUrl} className="space-y-4">
+          <div>
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
+              Active API Endpoint URL
+            </label>
+            <input
+              type="url"
+              required
+              placeholder="e.g. https://pretty-papers-work.loca.lt"
+              value={apiUrl}
+              onChange={(e) => setApiUrl(e.target.value)}
+              className="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-sm font-mono focus:ring-2 focus:ring-agri-500 outline-none"
+            />
+            <p className="text-[10px] text-slate-400 mt-1">
+              Expose your local server and enter your active Localtunnel or Cloudflare URL here to allow other devices to connect.
+            </p>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full sm:w-auto px-6 py-3.5 text-xs font-bold text-white bg-agri-600 hover:bg-agri-700 rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
+          >
+            Save API Server URL
+          </button>
+        </form>
       </div>
 
       {/* Password Change Form */}
