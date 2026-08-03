@@ -19,7 +19,7 @@ export default function Navbar() {
   };
 
   const getDashboardPath = () => {
-    if (!user) return '/login';
+    if (!user || !user.role) return '/login';
     switch (user.role.toLowerCase()) {
       case 'farmer': return '/farmer/dashboard';
       case 'transport': return '/transport/dashboard';
@@ -31,7 +31,7 @@ export default function Navbar() {
   };
 
   // Determine if current route displays the Sidebar component
-  const hasSidebar = user && !['/', '/login', '/register', '/verify', '/explorer', '/future-scope'].includes(location.pathname);
+  const hasSidebar = user && user.role && !['/', '/login', '/register', '/verify', '/explorer', '/future-scope'].includes(location.pathname);
 
   const publicNavLinks = [
     { name: 'Home', path: '/' },
@@ -100,10 +100,10 @@ export default function Navbar() {
                     className="hidden lg:flex flex-col text-right cursor-pointer group"
                   >
                     <span className="text-xs font-bold text-slate-900 dark:text-slate-100 group-hover:text-agri-600 transition-colors">
-                      {user.name}
+                      {user?.name}
                     </span>
                     <span className="text-[10px] font-semibold uppercase tracking-wider text-agri-600 dark:text-agri-400">
-                      {user.role} Dashboard
+                      {user?.role || 'User'} Dashboard
                     </span>
                   </Link>
                   
@@ -112,7 +112,7 @@ export default function Navbar() {
                     className="w-9 h-9 rounded-xl bg-agri-100 dark:bg-agri-950 text-agri-700 dark:text-agri-300 flex items-center justify-center font-bold text-sm border border-agri-300 dark:border-agri-700 hover:ring-2 hover:ring-agri-500 transition-all"
                     title="Go to Dashboard"
                   >
-                    {user.name.charAt(0).toUpperCase()}
+                    {user?.name?.charAt(0).toUpperCase() || 'U'}
                   </Link>
 
                   <button
@@ -184,12 +184,12 @@ export default function Navbar() {
             {user && (
               <div className="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm flex items-center gap-3">
                 <div className="w-12 h-12 rounded-xl bg-agri-600 text-white flex items-center justify-center font-bold text-lg shadow-agri shrink-0">
-                  {user.name.charAt(0).toUpperCase()}
+                  {user?.name?.charAt(0).toUpperCase() || 'U'}
                 </div>
                 <div className="overflow-hidden">
-                  <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100 truncate">{user.name}</h4>
+                  <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100 truncate">{user?.name}</h4>
                   <span className="text-[10px] font-bold text-agri-600 dark:text-agri-400 capitalize px-2 py-0.5 rounded-full bg-agri-50 dark:bg-agri-950/60 border border-agri-200 dark:border-agri-800 inline-block mt-0.5">
-                    {user.role} Account
+                    {user?.role || 'User'} Account
                   </span>
                 </div>
               </div>

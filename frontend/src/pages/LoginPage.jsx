@@ -30,7 +30,7 @@ export default function LoginPage() {
 
     try {
       const user = await login(email, password, role);
-      const userRole = user.role.toLowerCase();
+      const userRole = user?.role?.toLowerCase() || '';
       
       switch (userRole) {
         case 'farmer': navigate('/farmer/dashboard'); break;

@@ -23,12 +23,12 @@ export default function ProfilePage() {
       <div className="glass-card p-5 sm:p-8 space-y-6">
         <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-5 pb-6 border-b border-slate-100 dark:border-slate-700">
           <div className="w-20 h-20 rounded-3xl bg-agri-600 text-white flex items-center justify-center font-extrabold text-3xl shadow-agri shrink-0">
-            {user.name.charAt(0).toUpperCase()}
+            {user?.name?.charAt(0).toUpperCase() || 'U'}
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">{user.name}</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">{user?.name}</h2>
             <span className="text-xs font-bold uppercase tracking-wider text-agri-600 dark:text-agri-400 px-3 py-1 rounded-full bg-agri-50 dark:bg-agri-950 border border-agri-200 dark:border-agri-800 inline-block mt-1">
-              {user.role} Account
+              {(user?.role || 'User')} Account
             </span>
           </div>
         </div>

@@ -34,7 +34,7 @@ export default function Sidebar() {
     navigate('/login');
   };
 
-  const role = user.role.toLowerCase();
+  const role = user?.role?.toLowerCase() || '';
 
   const getRoleNavLinks = () => {
     switch (role) {
@@ -111,12 +111,12 @@ export default function Sidebar() {
           <div className="p-3 bg-white dark:bg-slate-800/80 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-soft">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-agri-600 text-white flex items-center justify-center font-bold text-base shadow-agri shrink-0">
-                {user.name.charAt(0).toUpperCase()}
+                {user?.name?.charAt(0).toUpperCase() || 'U'}
               </div>
               <div className={`overflow-hidden transition-all duration-300 ${isCollapsed ? 'md:w-0 md:opacity-0' : 'w-auto opacity-100'}`}>
-                <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100 truncate">{user.name}</h4>
+                <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100 truncate">{user?.name}</h4>
                 <span className="text-[11px] font-semibold text-agri-600 dark:text-agri-400 capitalize px-2 py-0.5 rounded-full bg-agri-50 dark:bg-agri-950/60 border border-agri-200 dark:border-agri-800 inline-block mt-0.5 whitespace-nowrap">
-                  {user.role} Account
+                  {(user?.role || 'User')} Account
                 </span>
               </div>
             </div>
