@@ -17,6 +17,14 @@ from app.routers import (
 # Create database tables automatically on startup
 Base.metadata.create_all(bind=engine)
 
+# Auto-seed database if empty (useful for Vercel/ephemeral envs)
+try:
+    from seed_data import seed
+    seed()
+except Exception as e:
+    import logging
+    logging.warning(f"Database auto-seeding skipped or failed: {e}")
+
 app = FastAPI(
     title="AgriChain API",
     description="Blockchain-Based Agricultural Supply Chain Transparency System",

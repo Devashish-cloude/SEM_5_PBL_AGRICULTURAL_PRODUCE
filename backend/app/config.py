@@ -2,13 +2,26 @@ import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-UPLOAD_DIR = BASE_DIR / "uploads"
-UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+
+# Detect if running in Vercel serverless environment
+IS_VERCEL = os.getenv("VERCEL") == "1"
+
+if IS_VERCEL:
+    UPLOAD_DIR = Path("/tmp/uploads")
+    DATABASE_URL = "sqlite:////tmp/agrichain.db"
+else:
+    UPLOAD_DIR = BASE_DIR / "uploads"
+    DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{BASE_DIR}/agrichain.db")
+
+# Ensure upload directory exists
+try:
+    UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+except Exception as e:
+    print(f"Warning: Could not create upload directory {UPLOAD_DIR}: {e}")
 
 SECRET_KEY = os.getenv("SECRET_KEY", "agrichain-secret-jwt-key-998877665544332211-pbl-sem-5")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 # 24 hours
 
-DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{BASE_DIR}/agrichain.db")
 WEB3_PROVIDER_URL = os.getenv("WEB3_PROVIDER_URL", "http://127.0.0.1:8545")
 CONTRACT_ADDRESS = os.getenv("CONTRACT_ADDRESS", "0x1234567890123456789012345678901234567890")

@@ -1,6 +1,24 @@
 import axios from 'axios';
 
-const API_BASE_URL = localStorage.getItem('agrichain_api_url') || import.meta.env.VITE_API_BASE_URL || '';
+const getApiBaseUrl = () => {
+  const savedUrl = localStorage.getItem('agrichain_api_url');
+  if (savedUrl) return savedUrl.trim();
+
+  const envUrl = import.meta.env.VITE_API_BASE_URL;
+  if (envUrl) return envUrl.trim();
+
+  // If running on a Firebase Hosting domain, automatically point to the Vercel backend
+  if (typeof window !== 'undefined' && window.location.hostname) {
+    const hostname = window.location.hostname;
+    if (hostname.includes('web.app') || hostname.includes('firebaseapp.com')) {
+      return 'https://sem-5-pbl-agricultural-produce.vercel.app';
+    }
+  }
+
+  return '';
+};
+
+export const API_BASE_URL = getApiBaseUrl();
 
 const api = axios.create({
   baseURL: API_BASE_URL,

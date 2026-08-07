@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { authService } from '../services/api';
+import { authService, API_BASE_URL } from '../services/api';
 import NotificationToast from '../components/NotificationToast';
 import { Settings, Lock, CheckCircle2, Moon, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
@@ -8,7 +8,7 @@ export default function SettingsPage() {
   const [currentPwd, setCurrentPwd] = useState('');
   const [newPwd, setNewPwd] = useState('');
   const [confirmPwd, setConfirmPwd] = useState('');
-  const [apiUrl, setApiUrl] = useState(localStorage.getItem('agrichain_api_url') || import.meta.env.VITE_API_BASE_URL || '');
+  const [apiUrl, setApiUrl] = useState(API_BASE_URL);
   const [loading, setLoading] = useState(false);
   const [toastMsg, setToastMsg] = useState({ text: '', type: 'success' });
 
