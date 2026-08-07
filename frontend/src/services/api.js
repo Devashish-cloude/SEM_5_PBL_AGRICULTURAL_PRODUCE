@@ -11,7 +11,7 @@ const getApiBaseUrl = () => {
   if (typeof window !== 'undefined' && window.location.hostname) {
     const hostname = window.location.hostname;
     if (hostname.includes('web.app') || hostname.includes('firebaseapp.com')) {
-      return 'https://sem-5-pbl-agricultural-produce.vercel.app';
+      return 'https://agrichain-lilac.vercel.app';
     }
   }
 
