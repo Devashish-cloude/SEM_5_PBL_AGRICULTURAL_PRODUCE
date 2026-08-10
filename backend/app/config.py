@@ -15,6 +15,14 @@ if DATABASE_URL:
     elif DATABASE_URL.startswith("mysql://"):
         DATABASE_URL = DATABASE_URL.replace("mysql://", "mysql+pymysql://", 1)
 
+    # Strip sslmode from pg8000 URLs to prevent driver parameter conflicts
+    if "pg8000" in DATABASE_URL and "sslmode" in DATABASE_URL:
+        from urllib.parse import urlparse, urlunparse, parse_qs, urlencode
+        u = urlparse(DATABASE_URL)
+        q = parse_qs(u.query)
+        q.pop("sslmode", None)
+        DATABASE_URL = urlunparse(u._replace(query=urlencode(q, doseq=True)))
+
 if IS_VERCEL:
     UPLOAD_DIR = Path("/tmp/uploads")
     if not DATABASE_URL:
