@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { supabase } from '../lib/supabase';
 import { Sprout, User, Mail, Lock, Phone, MapPin, ArrowRight } from 'lucide-react';
 import NotificationToast from '../components/NotificationToast';
 
@@ -30,19 +31,55 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setErrorMsg('');
     setSuccessMsg('');
     setLoading(true);
 
     try {
+      // 1. Register the user using your existing authentication system
       await register(formData);
-      setSuccessMsg('Registration successful! Redirecting to login...');
+
+      // 2. If the selected role is Farmer,
+      //    save the farmer's profile in Supabase
+      if (formData.role === 'farmer') {
+        const { error: farmerError } = await supabase
+          .from('farmers')
+          .insert([
+            {
+              name: formData.name,
+              email: formData.email,
+              phone: formData.phone,
+              address: formData.address
+            }
+          ]);
+
+        if (farmerError) {
+          console.error(
+            'Supabase farmer error:',
+            farmerError
+          );
+
+          throw farmerError;
+        }
+      }
+
+      setSuccessMsg(
+        'Registration successful! Redirecting to login...'
+      );
+
       setTimeout(() => {
         navigate('/login');
       }, 1500);
+
     } catch (err) {
-      console.error(err);
-      setErrorMsg(err.response?.data?.detail || 'Registration failed. Please try again.');
+      console.error('Registration error:', err);
+
+      setErrorMsg(
+        err?.response?.data?.detail ||
+        err?.message ||
+        'Registration failed. Please try again.'
+      );
     } finally {
       setLoading(false);
     }
@@ -51,7 +88,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-4 py-12">
       <div className="w-full max-w-lg space-y-6">
-        
+
         {/* Header */}
         <div className="text-center space-y-2">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-agri-600 to-agri-500 text-white mx-auto flex items-center justify-center shadow-agri">
@@ -68,7 +105,7 @@ export default function RegisterPage() {
         {/* Form Card */}
         <div className="glass-card p-8 shadow-2xl">
           <form onSubmit={handleSubmit} className="space-y-4">
-            
+
             {/* Role Radio Group */}
             <div>
               <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
@@ -80,11 +117,10 @@ export default function RegisterPage() {
                     key={r.id}
                     type="button"
                     onClick={() => setFormData({ ...formData, role: r.id })}
-                    className={`py-2 px-2 text-xs font-bold rounded-xl border transition-all ${
-                      formData.role === r.id
-                        ? 'bg-agri-600 text-white border-agri-600 shadow-agri'
-                        : 'bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100'
-                    }`}
+                    className={`py-2 px-2 text-xs font-bold rounded-xl border transition-all ${formData.role === r.id
+                      ? 'bg-agri-600 text-white border-agri-600 shadow-agri'
+                      : 'bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100'
+                      }`}
                   >
                     {r.label}
                   </button>

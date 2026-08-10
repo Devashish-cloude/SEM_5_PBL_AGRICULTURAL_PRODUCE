@@ -57,7 +57,7 @@ export default function AddBatchPage() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
-      
+
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -146,7 +146,7 @@ export default function AddBatchPage() {
         /* BATCH CREATION FORM */
         <div className="glass-card p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Crop Name */}
               <div>

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { supabase } from "./lib/supabase";
 import React from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
@@ -58,6 +60,22 @@ const DashboardLayout = ({ children }) => {
 };
 
 export default function App() {
+  useEffect(() => {
+    const testSupabase = async () => {
+      const { data, error } = await supabase
+        .from("farmers")
+        .select("*");
+
+      if (error) {
+        console.error("❌ Supabase connection error:", error);
+      } else {
+        console.log("✅ Supabase connected!");
+        console.log("Farmers:", data);
+      }
+    };
+
+    testSupabase();
+  }, []);
   const location = useLocation();
   const isPublicStandalone = ['/', '/login', '/register'].includes(location.pathname);
 

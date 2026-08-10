@@ -6,12 +6,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Detect if running in Vercel serverless environment
 IS_VERCEL = os.getenv("VERCEL") == "1"
 
+DATABASE_URL = os.getenv("DATABASE_URL")
+if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
 if IS_VERCEL:
     UPLOAD_DIR = Path("/tmp/uploads")
-    DATABASE_URL = "sqlite:////tmp/agrichain.db"
+    if not DATABASE_URL:
+        DATABASE_URL = "sqlite:////tmp/agrichain.db"
 else:
     UPLOAD_DIR = BASE_DIR / "uploads"
-    DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{BASE_DIR}/agrichain.db")
+    if not DATABASE_URL:
+        DATABASE_URL = f"sqlite:///{BASE_DIR}/agrichain.db"
 
 # Ensure upload directory exists
 try:
