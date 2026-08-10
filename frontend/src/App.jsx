@@ -62,6 +62,10 @@ const DashboardLayout = ({ children }) => {
 export default function App() {
   useEffect(() => {
     const testSupabase = async () => {
+      if (!supabase) {
+        console.warn("⚠️ Supabase is not configured. Skipping connection test.");
+        return;
+      }
       const { data, error } = await supabase
         .from("farmers")
         .select("*");

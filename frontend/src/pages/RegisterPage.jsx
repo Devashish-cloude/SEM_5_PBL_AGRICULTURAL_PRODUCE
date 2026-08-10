@@ -41,26 +41,26 @@ export default function RegisterPage() {
       await register(formData);
 
       // 2. If the selected role is Farmer,
-      //    save the farmer's profile in Supabase
+      //    save the farmer's profile in Supabase (if configured)
       if (formData.role === 'farmer') {
-        const { error: farmerError } = await supabase
-          .from('farmers')
-          .insert([
-            {
-              name: formData.name,
-              email: formData.email,
-              phone: formData.phone,
-              address: formData.address
-            }
-          ]);
+        if (supabase) {
+          const { error: farmerError } = await supabase
+            .from('farmers')
+            .insert([
+              {
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                address: formData.address
+              }
+            ]);
 
-        if (farmerError) {
-          console.error(
-            'Supabase farmer error:',
-            farmerError
-          );
-
-          throw farmerError;
+          if (farmerError) {
+            console.error('Supabase farmer error:', farmerError);
+            throw farmerError;
+          }
+        } else {
+          console.warn('⚠️ Supabase is not configured. Skipping farmer profile sync.');
         }
       }
 
