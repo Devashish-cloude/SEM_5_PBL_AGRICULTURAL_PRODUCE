@@ -49,7 +49,18 @@ export default function AddBatchPage() {
       setCreatedBatch(res.data);
     } catch (err) {
       console.error(err);
-      setErrorMsg(err.response?.data?.detail || 'Failed to register crop batch. Please try again.');
+      const detail = err.response?.data?.detail;
+      let msg = 'Failed to register crop batch. Please try again.';
+      if (typeof detail === 'string') {
+        msg = detail;
+      } else if (Array.isArray(detail)) {
+        msg = detail.map(d => d.msg || JSON.stringify(d)).join(', ');
+      } else if (err.response?.data?.message) {
+        msg = err.response.data.message;
+      } else if (err.message) {
+        msg = err.message;
+      }
+      setErrorMsg(msg);
     } finally {
       setLoading(false);
     }

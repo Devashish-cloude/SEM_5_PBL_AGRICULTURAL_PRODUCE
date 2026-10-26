@@ -28,12 +28,15 @@ const api = axios.create({
   },
 });
 
-// Interceptor to inject JWT token
+// Interceptor to inject JWT token and handle multipart FormData
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('agrichain_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
+    }
+    if (config.data instanceof FormData) {
+      delete config.headers['Content-Type'];
     }
     return config;
   },
@@ -48,9 +51,7 @@ export const authService = {
 };
 
 export const farmerService = {
-  addBatch: (formData) => api.post('/api/farmer/add-batch', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' }
-  }),
+  addBatch: (formData) => api.post('/api/farmer/add-batch', formData),
   getMyBatches: () => api.get('/api/farmer/my-batches'),
   getBatchDetail: (batchId) => api.get(`/api/farmer/batch/${batchId}`),
 };

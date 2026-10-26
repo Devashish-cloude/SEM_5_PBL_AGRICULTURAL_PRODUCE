@@ -1,4 +1,7 @@
 import shutil
+import time
+import uuid
+import logging
 from pathlib import Path
 from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File, Form
 from sqlalchemy.orm import Session
@@ -25,12 +28,19 @@ def add_crop_batch(
 ):
     image_url = None
     if image and image.filename:
-        file_ext = Path(image.filename).suffix
-        filename = f"batch_{current_user.id}_{int(Path(image.filename).stem or 0)}_{file_ext}"
-        filepath = UPLOAD_DIR / filename
-        with open(filepath, "wb") as buffer:
-            shutil.copyfileobj(image.file, buffer)
-        image_url = f"/uploads/{filename}"
+        try:
+            UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+            file_ext = Path(image.filename).suffix.lower() or ".jpg"
+            timestamp = int(time.time())
+            unique_id = uuid.uuid4().hex[:8]
+            filename = f"batch_{current_user.id}_{timestamp}_{unique_id}{file_ext}"
+            filepath = UPLOAD_DIR / filename
+            with open(filepath, "wb") as buffer:
+                shutil.copyfileobj(image.file, buffer)
+            image_url = f"/uploads/{filename}"
+        except Exception as e:
+            logging.error(f"Failed to save uploaded image: {e}")
+            image_url = None
     
     batch_req = schemas.CreateBatchRequest(
         crop_name=crop_name,
